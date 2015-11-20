@@ -16,11 +16,11 @@ import com.ynov.nicolas.station.entities.Cuve;
 import com.ynov.nicolas.station.services.CuveService;
 
 @Path("/cuves")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_XML)
+@Consumes(MediaType.APPLICATION_XML)
 public class CuveResource {
 	
-	private CuveService cuveService = new CuveService();
+	private CuveService cuveService = CuveService.getInstance();
 	
 	@GET
 	public List<Cuve> getAllCuves(){
@@ -47,5 +47,11 @@ public class CuveResource {
 	@DELETE
 	public Cuve deleteCuve(@PathParam("idCuve") Long id){
 		return cuveService.deleteCuve(id);
+	}
+	
+	@Path("/{idCuve}/remplissage/{quantite}")
+	@POST
+	public Cuve remplirCuve(@PathParam("idCuve") Long id, @PathParam("quantite") double quantite){
+		return cuveService.remplirCuve(id, quantite);
 	}
 }

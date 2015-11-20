@@ -5,17 +5,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Cuve {
 	
-	private final int capaciteMax = 1000;
-	private final int seuilAlerte = 200;
+	private final double capaciteMax = 1000;
+	private final double seuilAlerte = 200;
 	
 	private long id;
 	private Pompe pompe;
 	private Carburant carburant;
+	private double capaciteActuelle;
 	
 	public Cuve(long id, Pompe pompe, Carburant carburant) {
 		this.id = id;
 		this.pompe = pompe;
 		this.carburant = carburant;
+		this.capaciteActuelle = 0;
 	}
 
 	public Cuve() {
@@ -27,6 +29,7 @@ public class Cuve {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	public Pompe getPompe() {
 		return pompe;
 	}
@@ -39,17 +42,25 @@ public class Cuve {
 	public void setCarburant(Carburant carburant) {
 		this.carburant = carburant;
 	}
-	public int getCapaciteMax() {
+	public double getCapaciteMax() {
 		return capaciteMax;
 	}
-	public int getSeuilAlerte() {
+	public double getSeuilAlerte() {
 		return seuilAlerte;
 	}
 
-	public void setCapaciteMax(int capaciteMax) {
+	public void setCapaciteMax(double capaciteMax) {
 	}
 
-	public void setSeuilAlerte(int seuilAlerte) {
+	public void setSeuilAlerte(double seuilAlerte) {
+	}
+
+	public double getCapaciteActuelle() {
+		return capaciteActuelle;
+	}
+
+	public void setCapaciteActuelle(double capaciteActuelle) {
+		this.capaciteActuelle = capaciteActuelle;
 	}
 
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.jvnet.hk2.annotations.Service;
+
 import com.ynov.nicolas.station.database.Data;
 import com.ynov.nicolas.station.entities.Carburant;
 import com.ynov.nicolas.station.entities.Cuve;
@@ -11,9 +13,17 @@ import com.ynov.nicolas.station.entities.Pompe;
 
 public class CuveService {
 	
+	private static CuveService cuveService = null;
 	private Map<Long, Cuve> cuves = Data.getCuves();
 	
-	public CuveService() {
+	public static CuveService getInstance(){
+		if(null == cuveService){
+			cuveService = new CuveService();
+		}
+		return cuveService;
+	}
+
+	private CuveService() {
 		cuves.put(1L, new Cuve(1, new Pompe(1, 1), new Carburant(1, 1.95, "SP-95")));
 		cuves.put(2L, new Cuve(2, new Pompe(2, 2), new Carburant(2, 1.80, "SP-98")));
 		cuves.put(3L, new Cuve(3, new Pompe(3, 2), new Carburant(2, 1.70, "Diesel")));
@@ -43,5 +53,27 @@ public class CuveService {
 	
 	public Cuve deleteCuve(Long id){
 		return cuves.remove(id);
+	}
+	
+	public double debiterCarburant(Pompe pompe, double quantite){
+		Cuve cuve = this.cuves.values().stream()
+			.filter(c -> c.getPompe().getId() == pompe.getId())
+			.findFirst()
+			.get();
+		if(cuve.getCapaciteActuelle() >= quantite){
+			cuve.setCapaciteActuelle(cuve.getCapaciteActuelle() - quantite);
+			return quantite * cuve.getCarburant().getPrix();
+		}
+		return -1;
+	}
+
+	public Cuve remplirCuve(Long id, double quantite) {
+		Cuve c = cuves.get(id);
+		if(c.getCapaciteActuelle() + quantite > c.getCapaciteMax()){
+			c.setCapaciteActuelle(c.getCapaciteMax());
+		}else{
+			c.setCapaciteActuelle(c.getCapaciteActuelle() + quantite);
+		}
+		return c;
 	}
 }

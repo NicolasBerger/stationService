@@ -1,5 +1,8 @@
 package com.ynov.nicolas.station.entities;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Pompe {
 
 	private long id;
