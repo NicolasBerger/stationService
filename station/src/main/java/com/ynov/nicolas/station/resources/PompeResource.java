@@ -17,15 +17,12 @@ import com.sun.org.glassfish.gmbal.ParameterNames;
 import com.ynov.nicolas.station.entities.Pompe;
 import com.ynov.nicolas.station.services.PompeService;
 
-@Path("/pompes")
-@Produces(MediaType.APPLICATION_XML)
-@Consumes(MediaType.APPLICATION_XML)
+@Path("/")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class PompeResource {
 	
 	private PompeService pompeService = new PompeService();
-	
-	public PompeResource() {
-	}
 
 	@GET
 	public List<Pompe> getAllPompes(){
