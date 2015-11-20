@@ -1,5 +1,8 @@
 package com.ynov.nicolas.station.entities;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Cuve {
 	
 	private final int capaciteMax = 1000;
@@ -10,7 +13,6 @@ public class Cuve {
 	private Carburant carburant;
 	
 	public Cuve(long id, Pompe pompe, Carburant carburant) {
-		super();
 		this.id = id;
 		this.pompe = pompe;
 		this.carburant = carburant;
@@ -42,6 +44,12 @@ public class Cuve {
 	}
 	public int getSeuilAlerte() {
 		return seuilAlerte;
+	}
+
+	public void setCapaciteMax(int capaciteMax) {
+	}
+
+	public void setSeuilAlerte(int seuilAlerte) {
 	}
 
 }
