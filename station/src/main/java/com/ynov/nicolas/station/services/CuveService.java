@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.jvnet.hk2.annotations.Service;
-
 import com.ynov.nicolas.station.database.Data;
 import com.ynov.nicolas.station.entities.Carburant;
 import com.ynov.nicolas.station.entities.Cuve;
@@ -57,7 +55,7 @@ public class CuveService {
 	
 	public double debiterCarburant(Pompe pompe, double quantite){
 		Cuve cuve = this.cuves.values().stream()
-			.filter(c -> c.getPompe().getId() == pompe.getId())
+			.filter(c -> null != c.getPompe(pompe.getId()))
 			.findFirst()
 			.get();
 		if(cuve.getCapaciteActuelle() >= quantite){

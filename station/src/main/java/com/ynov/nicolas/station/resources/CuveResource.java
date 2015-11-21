@@ -16,8 +16,8 @@ import com.ynov.nicolas.station.entities.Cuve;
 import com.ynov.nicolas.station.services.CuveService;
 
 @Path("/cuves")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_XML)
+@Consumes(MediaType.APPLICATION_XML)
 public class CuveResource {
 	
 	private CuveService cuveService = CuveService.getInstance();
@@ -27,6 +27,11 @@ public class CuveResource {
 		return cuveService.getAllCuves();
 	}
 
+	@Path("/{idCuve}")
+	public Cuve getCuveInfos(@PathParam("idCuve") Long id){
+		return cuveService.getCuve(id);
+	}
+	
 	@Path("/{idCuve}")
 	@GET
 	public Cuve getCuve(@PathParam("idCuve") Long id){
@@ -43,21 +48,15 @@ public class CuveResource {
 		return cuveService.updateCuve(cuve);
 	}
 	
-	@Path("/{idCuve}")
 	@DELETE
+	@Path("/{idCuve}")
 	public Cuve deleteCuve(@PathParam("idCuve") Long id){
 		return cuveService.deleteCuve(id);
 	}
 	
 	@Path("/{idCuve}/remplissage/{quantite}")
 	@POST
-	public Cuve remplirCuve(@PathParam("idCuve") Long id, 
-							@PathParam("quantite") double quantite){
+	public Cuve remplirCuve(@PathParam("idCuve") Long id, @PathParam("quantite") double quantite){
 		return cuveService.remplirCuve(id, quantite);
-	}
-	
-	@Path("/{idCuve}/pompes")
-	public PompeResource getPompeResource(){
-		return new PompeResource();
 	}
 }

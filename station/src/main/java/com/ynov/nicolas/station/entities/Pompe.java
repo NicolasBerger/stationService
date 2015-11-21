@@ -1,5 +1,6 @@
 package com.ynov.nicolas.station.entities;
 
+import javax.ws.rs.GET;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -15,6 +16,11 @@ public class Pompe {
 	}
 
 	public Pompe() {
+	}
+	
+	@GET
+	public Pompe getThis(){
+		return this;
 	}
 
 	public long getId() {

@@ -1,5 +1,11 @@
 package com.ynov.nicolas.station.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -23,6 +29,11 @@ public class Cuve {
 	public Cuve() {
 	}
 
+	@GET
+	public Cuve getThis(){
+		return this;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -30,9 +41,19 @@ public class Cuve {
 		this.id = id;
 	}
 	
-	public Pompe getPompe() {
-		return pompe;
+	@Path("/pompes/{idPompe}")
+	public Pompe getPompe(@PathParam("idPompe") Long idPompe) {
+		return pompe.getId()==idPompe?pompe:null;
 	}
+	
+	@Path("/pompes")
+	@GET
+	public List<Pompe> getAllPompes() {
+		List<Pompe> liste = new ArrayList<>();
+		liste.add(pompe);
+		return liste;
+	}
+
 	public void setPompe(Pompe pompe) {
 		this.pompe = pompe;
 	}
