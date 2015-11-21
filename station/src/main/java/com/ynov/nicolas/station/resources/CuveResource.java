@@ -20,7 +20,7 @@ import com.ynov.nicolas.station.services.CuveService;
 @Consumes(MediaType.APPLICATION_XML)
 public class CuveResource {
 	
-	private CuveService cuveService = CuveService.getInstance();
+	private CuveService cuveService = new CuveService();
 	
 	@GET
 	public List<Cuve> getAllCuves(){

@@ -4,22 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Singleton;
+
 import com.ynov.nicolas.station.database.Data;
-import com.ynov.nicolas.station.entities.Carburant;
-import com.ynov.nicolas.station.entities.Cuve;
 import com.ynov.nicolas.station.entities.Pompe;
 
+@Singleton
 public class PompeService {
 	
-	private static PompeService pompeService = null;
 	private Map<Long, Pompe> pompes = Data.getPompes();
-	
-	public static PompeService getInstance(){
-		if(null == pompeService){
-			pompeService = new PompeService();
-		}
-		return pompeService;
-	}
 	
 	public PompeService() {
 		pompes.put(1L, new Pompe(1, 1));
@@ -54,6 +47,6 @@ public class PompeService {
 	}
 	
 	public double debiterCarburant(Long id, double quantite){
-		return CuveService.getInstance().debiterCarburant(this.getPompe(id), quantite);
+		return new CuveService().debiterCarburant(this.getPompe(id), quantite);
 	}
 }
