@@ -15,11 +15,12 @@ import com.ynov.nicolas.station.entities.Pompe;
 public class CuveService {
 	
 	private Map<Long, Cuve> cuves = Data.getCuves();
+	private PompeService pompeService = new PompeService();
 	
 	public CuveService() {
-		cuves.put(1L, new Cuve(1, new Pompe(1, 1), new Carburant(1, 1.95, "SP-95")));
-		cuves.put(2L, new Cuve(2, new Pompe(2, 2), new Carburant(2, 1.80, "SP-98")));
-		cuves.put(3L, new Cuve(3, new Pompe(3, 2), new Carburant(2, 1.70, "Diesel")));
+		cuves.put(1L, new Cuve(1, new Carburant(100, 1.95, "SP-95")));
+		cuves.put(2L, new Cuve(2, pompeService.getPompe(20L), new Carburant(200, 1.80, "SP-98")));
+		cuves.put(3L, new Cuve(3, pompeService.getPompe(30L), new Carburant(200, 1.70, "Diesel")));
 	}
 
 	public List<Cuve> getAllCuves(){

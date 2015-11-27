@@ -15,9 +15,9 @@ public class PompeService {
 	private Map<Long, Pompe> pompes = Data.getPompes();
 	
 	public PompeService() {
-		pompes.put(1L, new Pompe(1, 1));
-		pompes.put(2L, new Pompe(2, 2));
-		pompes.put(3L, new Pompe(3, 3));
+		pompes.put(10L, new Pompe(10, 10));
+		pompes.put(20L, new Pompe(20, 20));
+		pompes.put(30L, new Pompe(30, 30));
 	}
 
 	public List<Pompe> getAllPompes(){

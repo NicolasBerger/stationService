@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -22,6 +23,12 @@ public class Cuve {
 	public Cuve(long id, Pompe pompe, Carburant carburant) {
 		this.id = id;
 		this.pompe = pompe;
+		this.carburant = carburant;
+		this.capaciteActuelle = 0;
+	}
+	
+	public Cuve(long id, Carburant carburant) {
+		this.id = id;
 		this.carburant = carburant;
 		this.capaciteActuelle = 0;
 	}
@@ -52,6 +59,16 @@ public class Cuve {
 		List<Pompe> liste = new ArrayList<>();
 		liste.add(pompe);
 		return liste;
+	}
+	
+	@POST
+	public Cuve addPompe(Pompe pompe){
+		this.pompe = pompe;
+		return this;
+	}
+	
+	public Pompe getPompe(){
+		return this.pompe;
 	}
 
 	public void setPompe(Pompe pompe) {

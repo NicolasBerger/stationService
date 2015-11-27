@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.ynov.nicolas.station.entities.Cuve;
+import com.ynov.nicolas.station.entities.Pompe;
 import com.ynov.nicolas.station.services.CuveService;
 
 @Path("/cuves")
@@ -36,6 +37,12 @@ public class CuveResource {
 	@GET
 	public Cuve getCuve(@PathParam("idCuve") Long id){
 		return cuveService.getCuve(id);
+	}
+	
+	@Path("/{idCuve}")
+	@POST
+	public Cuve addPompe(@PathParam("idCuve") Long id, Pompe pompe){
+		return getCuve(id).addPompe(pompe);
 	}
 
 	@POST

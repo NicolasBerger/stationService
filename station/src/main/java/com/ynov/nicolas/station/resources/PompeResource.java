@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import com.ynov.nicolas.station.entities.Pompe;
 import com.ynov.nicolas.station.services.PompeService;
 
-@Path("/")
+@Path("/pompes")
 @Produces(MediaType.APPLICATION_XML)
 @Consumes(MediaType.APPLICATION_XML)
 public class PompeResource {
